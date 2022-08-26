@@ -8,6 +8,15 @@ use Illuminate\Support\Facades\Http;
 
 class ProductController extends Controller
 {
+    public function fakeStoreApier()
+    {
+        $itoms = Http::get("https://fakestoreapi.com/products");
+        //    return $itoms;
+        // dd($itoms);
+        return view('products', [
+            "itoms" => json_decode($itoms)
+        ]);
+    }
     public function index()
     {
         $products = Product::all();
@@ -63,13 +72,7 @@ class ProductController extends Controller
         }
     }
 
-    public function fakeStoreApier(){
-        $itoms = Http::get("https://fakestoreapi.com/products");
-        //    return $itoms;
-        return view('products',[
-            "itoms" => json_decode($itoms)
-        ]);
-    }
+ 
 
     public function shipping(){
         return view('shipping');

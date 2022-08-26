@@ -1,10 +1,15 @@
 @extends('layout')
    
 @section('content')
+
 <div class="flex">
 <img style="width: 50%; " src="{{ asset('/assets/images/xxx.jpg') }}" alt="description of myimage">
    
 <div class="row">
+ 
+  
+
+   
     @foreach($itoms as $itom)
         <div class="col-xs-18 col-sm-6 col-md-3">
             {{-- @php dd($product);
@@ -21,6 +26,7 @@
                         </div>
         </div>
     @endforeach
+    
 </div>
     </div> 
 @endsection

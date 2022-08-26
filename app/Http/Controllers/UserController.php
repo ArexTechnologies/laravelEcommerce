@@ -3,12 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
+    protected function redirectTo()
+    {
+        if (Auth::user()->user_type == 'Administrator') {
+            return 'admin';  // admin dashboard path
+        } else {
+            return 'home';  // member dashboard path
+        }
+    }
    public function register(){
     return view('register');
    }
@@ -41,17 +51,31 @@ class UserController extends Controller
     {
         return view('login');
     }
+
+
+    //authenticate
     public function authenticate(Request $request)
     {
+
         $formFields = $request->validate([
             'email' => ['required', 'email'],
             'password' => 'required'
         ]);
-
+       
         if (auth()->attempt($formFields)) {
             $request->session()->regenerate();
+            $orders = DB::table('orders')->get();
 
-            return redirect('/')->with('message', 'You are now logged in!');
+            foreach ($orders as $order) {
+                var_dump($order->name);
+            }
+            if (Auth::user()->user_type == 'Administrator') {
+             
+                return view('admin');  // admin dashboard path
+            } else {
+                return redirect('/')->with('message', 'You are now logged in!');
+            }
+           
         }
 
         return back()->withErrors(['email' => 'Invalid Credentials'])->onlyInput('email');
