@@ -19,6 +19,9 @@ use App\Http\Controllers\ProductController;
 |
 */ 
 Route::get('/', [ProductController::class, 'fakeStoreApier']);
+Route::get('/detail/{id}', [ProductController::class, 'detail']);
+Route::post('/detail/{id}', [ProductController::class, 'review']);
+Route::post('/search', [ProductController::class, 'searcher']);
 Route::get('/register', [UserController::class, 'register'])->middleware('guest');
 Route::post('/users', [UserController::class, 'store']);
 Route::post('/logout', [UserController::class, 'logout']);
@@ -30,11 +33,16 @@ Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 //     })->name('dashboard');
 // });
 Route::get('/admin', [AdminController::class, 'admin'])->middleware('isAdmin');
-Route::get('/admin/mail', [MailController::class, 'index'])->middleware('isAdmin');
+Route::post('/admin/mail/{order}/adminorderdetails', [MailController::class, 'index'])->middleware('isAdmin');
+Route::get('/admin/mail/{order}/adminorderdetails', [MailController::class, 'index'])->middleware('isAdmin');
+Route::post('/admin/mail/{order}', [MailController::class, 'confo'])->middleware('isAdmin');
+
+
 
 Route::get('/shipping', [ProductController::class, 'shipping'])->middleware('auth');
-
-Route::post('/review/{order}', [OrderController::class, 'reviewPost'])->middleware('auth'); 
+//Route::get('/admin/mail/{order}/admin', [MailController::class, 'confo'])->middleware('isAdmin');
+Route::post('/review/{order}', [OrderController::class, 'reviewPost'])->middleware('auth');
+Route::get('/orderhistory', [OrderController::class, 'orderhistory'])->middleware('auth');
 Route::get('/review', [OrderController::class,'review'])->name('order')->middleware('auth');;
 Route::get('/savenpay', [OrderController::class, 'savenpay'])->middleware('auth');;
 //review post after clicking submit on shipping screen, order allready created

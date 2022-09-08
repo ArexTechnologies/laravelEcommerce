@@ -2,8 +2,7 @@
    
 @section('content')
 
-<div class="flex">
-<img style="width: 50%; " src="{{ asset('/assets/images/xxx.jpg') }}" alt="description of myimage">
+<div style="z-index: 1" class="flex">
    
 <div class="row">
  
@@ -16,12 +15,12 @@
             @endphp --}}
                 
                         <div class="img_thumbnail">
-                            <img  style="width: 150px;height : 150px;" src="{{ $itom->image }}" alt="">
+                            <a href="/detail/{{$itom->id}}"> <img  style="width: 150px;height : 150px;" src="{{ $itom->image }}" alt=""></a>
                             <div class="caption">
                                 <h4>{{ $itom->title }}</h4>
                                 <p style="width:10rem;" class="text-truncate">{{ $itom->description }}</p>
                                 <p><strong>Price: </strong> {{ $itom->price }}$</p>
-                                <p  class="btn-holder"><a href="{{ route('add_to_cart', $itom->id) }}" class=" btn btn-success btn-block text-center" role="button">Add to cart</a> </p>
+                                <p><a href="{{ route('add_to_cart', $itom->id) }}" class=" btn btn-dark btn-block text-center" role="button">Add to cart</a> </p>
                             </div>
                         </div>
         </div>
@@ -29,4 +28,5 @@
     
 </div>
     </div> 
+   
 @endsection

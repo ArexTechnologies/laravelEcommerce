@@ -56,6 +56,7 @@
 </div>
 
   </x-navbar>
+<img style="width : 100% ;height : 20rem ; z-index: -1" src="{{ asset('/assets/images/xxx.jpg') }}" alt="description of myimage">
 
   
 <br/>
@@ -71,6 +72,6 @@
 </div>
   
 @yield('scripts')
-     
+    <x-footer></x-footer>  
 </body>
 </html>

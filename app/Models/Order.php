@@ -19,7 +19,7 @@ class Order extends Model
     // ];
     protected $primaryKey = 'order_id';
   
-    protected $fillable = ['name', 'email', 'address', 'phone','total', 'items','info', 'user_id'];
+    protected $fillable = ['name', 'email', 'address', 'phone','total', 'items','info', 'user_id', 'order_status'];
 
     public function user()
     {

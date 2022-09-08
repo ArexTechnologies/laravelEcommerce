@@ -15,7 +15,7 @@
 </head>
 <body>
     <x-navbar></x-navbar>
-    <h1>Shipping Screen{{auth()->id()}}</h1>
+    <h1>Shipping Screen</h1>
 <div class="mx-2php artisan make:migration create_products_table row">
   <div class="col-md-8 mb-4">
     <div class="card mb-4">

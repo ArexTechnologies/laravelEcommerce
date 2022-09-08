@@ -53,15 +53,29 @@ try {
     }
 
     public function savenpay(){
-   
+         $total = 0;
+     if(session('cart')){
+            foreach (session('cart') as $id => $details) {
+                $total += $details['price'] * $details['quantity'];
+            };
+        
+     };
+
+     
        $finalData = session('orderxxx');
+       // $finalData['total'] = session('orderxxx')->total;
    $finalData['items'] = json_encode(session('cart'));
         $finalData['user_id'] = auth()->id();
-      //  dd($finalData);
+        $finalData['total'] = $total;
+    //    dd($finalData);
    Order::create($finalData);
         return view('savenpay',[
             'orders' => Order::latest()
         ]);
+    }
+
+    public function orderhistory(){
+        return view('orderhistory');
     }
     
 }

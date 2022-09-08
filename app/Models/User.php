@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Order;
+use App\Models\Review;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -48,4 +49,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Order::class, 'user_id');
     }
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'user_id');
+    }
+   
 }

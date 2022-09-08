@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->decimal('total',6,2)->nullable();
             $table->text('info')->nullable();
+            $table->string('order_status')->default('ordered');
             $table->timestamps();
             
         });
